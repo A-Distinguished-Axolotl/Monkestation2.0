@@ -791,24 +791,30 @@
 	pwr.Remove(eye_owner)
 
 /datum/action/innate/eyecaps
-    name = "Toggle eyecaps"
-    check_flags = AB_CHECK_CONSCIOUS
-    button_icon_state = "adjust_vision"
-    button_icon = 'icons/mob/actions/actions_animal.dmi'
-    background_icon_state = "bg_alien"
+	name = "Toggle eyecaps"
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "adjust_vision"
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
+	background_icon_state = "bg_alien"
+
 /datum/action/innate/eyecaps/Activate()
-    var/mob/living/carbon/human/eyeballowner = owner
-    to_chat(eyeballowner, span_notice("You toggle your eyecaps"))
-    if(!eyecaps_down)
-        owner.flash_protect = FLASH_PROTECTION_WELDER
-        owner.tint = 2
-        owner.balloon_alert(owner, "Eyecaps shut!")
-        eyecaps_down = TRUE
-    else
-        owner.flash_protect = FLASH_PROTECTION_SENSITIVE
-        owner.tint = 0
-        owner.balloon_alert(owner, "Eyecaps open!")
-        eyecaps_down = FALSE
+	var/mob/living/carbon/human/eyeballowner = owner
+	var/obj/item/organ/internal/eyes/nabber/nabber_eyes = eyeballowner.organs_slot["eye_sight"]
+
+	if (!istype(nabber_eyes)) //are they?
+		return
+
+	to_chat(eyeballowner, span_notice("You toggle your eyecaps"))
+	if(!nabber_eyes.eyecaps_down)
+		nabber_eyes.flash_protect = FLASH_PROTECTION_WELDER
+		nabber_eyes.tint = 2
+		owner.balloon_alert(owner, "Eyecaps shut!")
+		nabber_eyes.eyecaps_down = TRUE
+	else
+		nabber_eyes.flash_protect = FLASH_PROTECTION_SENSITIVE
+		nabber_eyes.tint = 0
+		owner.balloon_alert(owner, "Eyecaps open!")
+		nabber_eyes.eyecaps_down = FALSE
 
 
 
