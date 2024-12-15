@@ -9,3 +9,6 @@
 
 /mob/living/carbon/human/species/ornithid
     race = /datum/species/ornithid
+
+/mob/living/carbon/human/species/nabber
+	race = /datum/species/nabber

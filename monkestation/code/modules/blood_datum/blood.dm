@@ -336,3 +336,7 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 /datum/blood_type/spider
 	name = "S"
 	color = COLOR_CARP_TURQUOISE
+
+/datum/blood_type/crew/nabber
+	name = "Haemolyph" //Bug blood
+	color = "#30498f"

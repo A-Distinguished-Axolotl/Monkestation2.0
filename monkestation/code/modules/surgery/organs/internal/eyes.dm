@@ -45,3 +45,21 @@
 
 /obj/item/organ/internal/eyes/ethereal
 	eye_icon_state = "etherealeyes"
+
+//They should be here
+/obj/item/organ/internal/eyes/nabber
+	name = "nictating eyes"
+	desc = "Large orange orbs."
+	icon = 'icons/obj/medical/organs/nabber_organs.dmi'
+	icon_state = "eyes"
+	overlay_ignore_lighting = TRUE
+	eye_icon_state = "nabbereyes"
+	icon_state = "nabber_eyeballs"
+
+/obj/item/organ/internal/eyes/nabber/on_insert(mob/living/carbon/eye_owner)
+	. = ..()
+	ADD_TRAIT(eye_owner, TRAIT_TRUE_NIGHT_VISION, ORGAN_TRAIT)
+
+/obj/item/organ/internal/eyes/nabber/on_remove(mob/living/carbon/eye_owner)
+	. = ..()
+	REMOVE_TRAIT(eye_owner, TRAIT_TRUE_NIGHT_VISION, ORGAN_TRAIT)

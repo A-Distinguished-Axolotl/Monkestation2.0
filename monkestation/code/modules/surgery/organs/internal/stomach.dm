@@ -18,3 +18,14 @@
 	organ_flags = ORGAN_SYNTHETIC
 	//max_charge = 7500
 	//charge = 7500 //old bee code
+
+// What's that? Lizard stomach to Let Them Eat Rat?? I'LL SHOW YOU EAT RAT
+/obj/item/organ/internal/stomach/nabber
+	name = "nabber stomach"
+	icon = 'icons/obj/medical/organs/nabber_organs.dmi'
+	icon_state = "stomach"
+	//The agony
+	//We need to change hunger CAP as well
+	hunger_modifier = 5
+	//They can hold a lot
+	reagent_vol = 10000

@@ -746,3 +746,140 @@
 	adapt_light.forceMove(src)
 	REMOVE_TRAIT(unadapted, TRAIT_UNNATURAL_RED_GLOWY_EYES, ORGAN_TRAIT)
 	return ..()
+
+
+
+//REFERENCE DO NOT FUCKING TOUCH
+
+// /datum/action/innate/eyecaps
+//     name = "Toggle your eyecaps"
+//     check_flags = AB_CHECK_CONSCIOUS
+//     button_icon_state = "adjust_vision"
+//     button_icon = 'icons/mob/actions/actions_animal.dmi'
+//     background_icon_state = "bg_alien"
+// /datum/action/innate/eyecaps/Activate()
+//     var/mob/living/carbon/human/eyeballowner = owner
+//     to_chat(eyeballowner, span_notice("You toggle your eyecaps"))
+
+
+
+
+
+//DOCTOR, ARE YOU SURE THIS WILL WORK???
+//HAHAHA I HAVE NO IDEA!!!
+/obj/item/organ/internal/eyes/nabber
+	name = "nictating eyes"
+	desc = "Large orange orbs."
+	icon = 'icons/obj/medical/organs/nabber_organs.dmi'
+	icon_state = "eyes"
+	overlay_ignore_lighting = TRUE
+	eye_icon_state = "nabber_eyes"
+	flash_protect = FLASH_PROTECTION_SENSITIVE
+	tint = 0
+	var/eyecaps_down = FALSE
+	var/datum/action/innate/eyecaps/pwr = new /datum/action/innate/eyecaps()
+
+
+/obj/item/organ/internal/eyes/nabber/on_insert(mob/living/carbon/eye_owner)
+	. = ..()
+	ADD_TRAIT(eye_owner, TRAIT_TRUE_NIGHT_VISION, ORGAN_TRAIT)
+	pwr.Grant(eye_owner)
+
+/obj/item/organ/internal/eyes/nabber/on_remove(mob/living/carbon/eye_owner)
+	. = ..()
+	REMOVE_TRAIT(eye_owner, TRAIT_TRUE_NIGHT_VISION, ORGAN_TRAIT)
+	pwr.Remove(eye_owner)
+
+/datum/action/innate/eyecaps
+	name = "Toggle eyecaps"
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "adjust_vision"
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
+	background_icon_state = "bg_alien"
+
+/datum/action/innate/eyecaps/Activate()
+	var/mob/living/carbon/human/eyeballowner = owner
+	var/obj/item/organ/internal/eyes/nabber/nabber_eyes = eyeballowner.organs_slot["eye_sight"]
+
+	if (!istype(nabber_eyes)) //are they?
+		return
+
+	to_chat(eyeballowner, span_notice("You toggle your eyecaps"))
+	if(!nabber_eyes.eyecaps_down)
+		nabber_eyes.flash_protect = FLASH_PROTECTION_WELDER
+		nabber_eyes.tint = 2
+		owner.balloon_alert(owner, "Eyecaps shut!")
+		nabber_eyes.eyecaps_down = TRUE
+		eyeballowner.update_tint()
+	else
+		nabber_eyes.flash_protect = FLASH_PROTECTION_SENSITIVE
+		nabber_eyes.tint = 0
+		owner.balloon_alert(owner, "Eyecaps open!")
+		nabber_eyes.eyecaps_down = FALSE
+		eyeballowner.update_tint()
+
+
+
+
+
+// 	active = FALSE
+//     eyes.toggle_shielding()
+
+
+// /obj/item/organ/internal/eyes/nabber/proc/toggle_shielding()
+// 	if(!owner)
+// 		return
+
+// 	active = !active
+// 	playsound(owner, 'sound/machines/click.ogg', 50, TRUE)
+
+// 	if(active)
+// 		flash_protect = FLASH_PROTECTION_WELDER
+// 		tint = 2
+// 		owner.update_tint()
+// 		owner.balloon_alert(owner, "Eyecaps shut!")
+// 		return
+
+// 	flash_protect = FLASH_PROTECTION_SENSITIVE
+// 	tint = 0
+// 	owner.update_tint()
+// 	owner.balloon_alert(owner, "Eyecaps open!")
+
+// /obj/item/organ/internal/eyes/robotic/nabber/on_insert(mob/living/carbon/eye_recipient)
+// 	. = ..()
+// 	shield = new(eye_recipient)
+// 	shield.button_icon = ORGAN_ICON_NABBER
+// 	shield.button_icon_state = "eyes"
+// 	shield.Grant(eye_recipient)
+// 	shield.eyes = src
+
+
+
+// /obj/item/organ/internal/eyes/robotic/nabber/Remove(mob/living/carbon/eye_owner, special)
+// 	. = ..()
+// 	qdel(shield)
+// 	active = FALSE
+// 	toggle_shielding()
+
+// /datum/action/cooldown/toggle_welding
+// 	name = "Toggle welding shield"
+// 	desc = "Toggle your eyes welding shield"
+
+// 	var/obj/item/organ/internal/eyes/nabber/eyes
+// 	cooldown_time = null
+
+// /datum/action/cooldown/toggle_welding/Activate()
+// 	. = ..()
+// 	var/owner = eyes.owner
+// 	var/mob/living/carbon/human/nabber = owner
+// 	// if(!do_after(nabber, 2 SECONDS, nabber)) //Makes it so its difficult to abuse these in combat to avoid flashes
+// 	// 	StartCooldown()
+// 	// 	nabber.balloon_alert(nabber, "Stand still!")
+// 	// 	return FALSE
+// 	eyes.toggle_shielding()
+// 	StartCooldown()
+
+// /datum/action/cooldown/toggle_welding/Destroy()
+// 	. = ..()
+// 	eyes = null
+// 	cooldown_time = null

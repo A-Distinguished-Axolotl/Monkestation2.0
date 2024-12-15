@@ -579,3 +579,8 @@
 /obj/item/organ/internal/heart/spider
 	name = "spider heart"
 	heart_bloodtype = /datum/blood_type/spider
+
+/obj/item/organ/internal/heart/nabber
+	name = "haemolyph pump"
+	icon = 'icons/obj/medical/organs/nabber_organs.dmi'
+	icon_state = "heart"

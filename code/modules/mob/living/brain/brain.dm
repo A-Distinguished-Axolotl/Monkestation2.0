@@ -112,3 +112,8 @@
 
 	if(container)
 		. += "[container.type]"
+
+/obj/item/organ/internal/brain/nabber
+	name = "nabber brain"
+	icon = 'icons/obj/medical/organs/nabber_organs.dmi'
+	icon_state = "brain"

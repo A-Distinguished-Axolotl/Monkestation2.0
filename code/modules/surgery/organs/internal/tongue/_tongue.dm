@@ -701,3 +701,16 @@ GLOBAL_LIST_INIT(english_to_zombie, list())
 
 /obj/item/organ/internal/tongue/floran/get_laugh_sound()
 	return 'monkestation/sound/voice/laugh/lizard/lizard_laugh.ogg'
+
+/obj/item/organ/internal/tongue/nabber
+	name = "nabber tongue"
+	desc = "Finally some peace and quiet..."
+	// icon_state = "tonguelizard" This is going to need to get a sprite. Blue probably as well?
+	say_mod = "chitters"
+	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
+	// modifies_speech = TRUE //We can figure out later how this works
+	// languages_native = /datum/language/nabbish //We need a nabber language
+	// Ah that's not what it means. Checkmothcode for how to do it, or better yet simian
+	liked_foodtypes = GORE | MEAT | SEAFOOD | RAW | BUGS | DAIRY
+	disliked_foodtypes = GROSS | FRIED
+	toxic_foodtypes = GRAIN | VEGETABLES | CLOTH

@@ -283,3 +283,8 @@
 #undef LIVER_DEFAULT_TOX_RESISTANCE
 #undef LIVER_FAILURE_STAGE_SECONDS
 #undef MAX_TOXIN_LIVER_DAMAGE
+
+/obj/item/organ/internal/liver/nabber
+	name = "haemolyph pump"
+	icon = 'icons/obj/medical/organs/nabber_organs.dmi'
+	icon_state = "liver"
