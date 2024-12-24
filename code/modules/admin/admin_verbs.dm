@@ -19,6 +19,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/reload_admins,
 	/client/proc/requests,
 	/client/proc/secrets,
+	/client/proc/review_cassettes, /*monkestation addition Opens the Cassette Review menu*/
 	/client/proc/stop_sounds,
 	/client/proc/tag_datum_mapview,
 	)
@@ -102,6 +103,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/log_viewer_new,
 	/client/proc/request_more_opfor,
 	/client/proc/view_opfors,
+	/client/proc/check_players,
+	/client/proc/AdminVOX,
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel, /client/proc/library_control))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -157,7 +160,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/toggle_random_events,
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel, /client/proc/spawn_mixtape)) //Monkestation Addition: mixtape spawner
+GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel, /client/proc/spawn_mixtape,)) //Monkestation Addition: mixtape spawner
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 GLOBAL_PROTECT(admin_verbs_server)
@@ -262,6 +265,9 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/getserverlogs_debug,
 	/client/proc/getcurrentlogs_debug,
 	/client/proc/server_memory_stats,
+	/client/proc/tracy_next_round,
+	/client/proc/start_tracy,
+	// monkestation end
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
