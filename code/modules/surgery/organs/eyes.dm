@@ -809,11 +809,13 @@
 		nabber_eyes.tint = 2
 		owner.balloon_alert(owner, "Eyecaps shut!")
 		nabber_eyes.eyecaps_down = TRUE
+		eyeballowner.update_tint()
 	else
 		nabber_eyes.flash_protect = FLASH_PROTECTION_SENSITIVE
 		nabber_eyes.tint = 0
 		owner.balloon_alert(owner, "Eyecaps open!")
 		nabber_eyes.eyecaps_down = FALSE
+		eyeballowner.update_tint()
 
 
 
