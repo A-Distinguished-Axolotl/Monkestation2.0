@@ -391,6 +391,7 @@
 		/obj/item/stack/tile/iron/base/cyborg,
 		/obj/item/stack/cable_coil,
 		/obj/item/holosign_creator/atmos,
+		/obj/item/storage/part_replacer/cyborg,
 	)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(

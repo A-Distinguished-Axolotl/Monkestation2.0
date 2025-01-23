@@ -577,11 +577,11 @@
 			R.hasExpanded = FALSE
 			R.update_transform(0.5)
 
-/obj/item/borg/upgrade/rped
-	name = "engineering cyborg RPED"
-	desc = "A rapid part exchange device for the engineering cyborg."
+/obj/item/borg/upgrade/bs_rped
+	name = "engineering cyborg BSRPED"
+	desc = "A bluespace rapid part exchange device for the engineering cyborg."
 	icon = 'icons/obj/storage/storage.dmi'
-	icon_state = "borgrped"
+	icon_state = "BS_RPED"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
 	model_flags = BORG_MODEL_ENGINEERING
@@ -590,21 +590,21 @@
 	. = ..()
 	if(.)
 
-		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R
-		if(RPED)
-			to_chat(user, span_warning("This unit is already equipped with a RPED module!"))
+		var/obj/item/storage/part_replacer/bluespace = locate() in R
+		if(bluespace)
+			to_chat(user, span_warning("This unit is already equipped with a BSRPED module!"))
 			return FALSE
 
-		RPED = new(R.model)
-		R.model.basic_modules += RPED
-		R.model.add_module(RPED, FALSE, TRUE)
+		bluespace = new(R.model)
+		R.model.basic_modules += bluespace
+		R.model.add_module(bluespace, FALSE, TRUE)
 
 /obj/item/borg/upgrade/rped/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.model
-		if (RPED)
-			R.model.remove_module(RPED, TRUE)
+		var/obj/item/storage/part_replacer/bluespace = locate() in R.model
+		if (bluespace)
+			R.model.remove_module(bluespace, TRUE)
 
 /obj/item/borg/upgrade/pinpointer
 	name = "medical cyborg crew pinpointer"
